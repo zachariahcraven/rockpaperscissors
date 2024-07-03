@@ -1,1 +1,3 @@
-# rockpaperscissors
+# rockpaperscissors 
+
+create function getComputerChoice
