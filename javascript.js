@@ -1,4 +1,4 @@
-console.log("Hello World");
+console.log("Hello World, This is a 5 round Rock Paper Scissors Game");
 
 // funtion returns one of three strings at random
 function getComputerChoice() {
@@ -24,7 +24,7 @@ function getUserInput() {
     }
 }
 
-//Returns a string (result of the match)
+//Function returns a string (result of the round)
 function outcome(userAnwser, computerAnwser) {
     console.log(userAnwser, "vs", computerAnwser);
     if (userAnwser == computerAnwser) {
@@ -51,5 +51,28 @@ function outcome(userAnwser, computerAnwser) {
             }
     }
 }
+/*
+Main ----------------------------
+*/
+let userScore = 0;
+let computerScore = 0;
 
-console.log(outcome(getUserInput(), getComputerChoice()));
+while ((userScore + computerScore) < 5) {
+    let result = outcome(getUserInput(), getComputerChoice());
+    console.log(result);
+    if (result == "you won") {
+        userScore++;
+    } else if (result == "you lose") {
+        computerScore++;
+    }
+    //console.log(userScore, "vs", computerScore)
+}
+
+if (userScore > computerScore) {
+    console.log("You have won the game");
+    console.log(userScore, "vs", computerScore);
+} else {
+    console.log("You have lossed the game");
+    console.log(userScore, "vs", computerScore);
+}
+
