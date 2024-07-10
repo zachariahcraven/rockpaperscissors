@@ -13,17 +13,6 @@ function getComputerChoice() {
     }
 }
 
-//function returns (string) the result of the game or prompts user for new choice 
-function getUserInput() {
-    let input = prompt("Enter Choice");
-    input = input.toLowerCase();
-    if (input == "rock" || input == "scissors" || input == "paper") {
-        return input;
-    } else { 
-        return "Invalid Input Please try again."
-    }
-}
-
 //Function returns a string (result of the round)
 function outcome(userAnwser, computerAnwser) {
     console.log(userAnwser, "vs", computerAnwser);
@@ -51,28 +40,63 @@ function outcome(userAnwser, computerAnwser) {
             }
     }
 }
+
+function winner(yourScore, computersScore) {
+    if (yourScore > computersScore) {
+        alert("You Have Won the Game");
+    } else if (computersScore > yourScore) {
+        alert("You Have losed the Game");
+    } else {
+        alert("tie")
+    }
+    userScore = 0;
+    computerScore = 0;
+}
 /*
 Main ----------------------------
 */
-let userScore = 0;
-let computerScore = 0;
+var userScore = 0;
+var computerScore = 0;
 
-while ((userScore + computerScore) < 5) {
-    let result = outcome(getUserInput(), getComputerChoice());
-    console.log(result);
+const btn1 = document.querySelector("#rock");
+btn1.addEventListener("click", function(e) {
+    let result = outcome("rock", getComputerChoice());
     if (result == "you won") {
         userScore++;
     } else if (result == "you lose") {
         computerScore++;
     }
-    //console.log(userScore, "vs", computerScore)
-}
+    if (userScore + computerScore == 5) {
+        winner(userScore, computerScore);
+    }
+    console.log(userScore, "vs", computerScore);
+});
 
-if (userScore > computerScore) {
-    console.log("You have won the game");
+const btn2 = document.querySelector("#paper");
+btn2.addEventListener("click", function(e) {
+    let result = outcome("paper", getComputerChoice());
+    if (result == "you won") {
+        userScore++;
+    } else if (result == "you lose") {
+        computerScore++;
+    }
+    if (userScore + computerScore == 5) {
+        winner(userScore, computerScore);
+    }
     console.log(userScore, "vs", computerScore);
-} else {
-    console.log("You have lossed the game");
+});
+
+const btn3 = document.querySelector("#scissors");
+btn3.addEventListener("click", function(e) {
+    let result = outcome("scissors", getComputerChoice());
+    if (result == "you won") {
+        userScore++;
+    } else if (result == "you lose") {
+        computerScore++;
+    }
+    if (userScore + computerScore == 5) {
+        winner(userScore, computerScore);
+    }
     console.log(userScore, "vs", computerScore);
-}
+});
 
