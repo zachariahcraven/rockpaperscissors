@@ -41,7 +41,7 @@ function outcome(userAnwser, computerAnwser) {
     }
 }
 
-function winner(yourScore, computersScore) {
+function declareWinner(yourScore, computersScore) {
     if (yourScore > computersScore) {
         alert("You Have Won the Game");
     } else if (computersScore > yourScore) {
@@ -59,49 +59,25 @@ var userScore = 0;
 var computerScore = 0;
 
 const div = document.querySelector("#container")
+const choices = document.createElement("p");
+const buttons = document.querySelectorAll("button");
 
-const btn1 = document.querySelector("#rock");
-btn1.addEventListener("click", function(e) {
-    let result = outcome("rock", getComputerChoice());
-    div.textContent = "You: " + userScore + " vs " + "Computer: " + computerScore;
-    if (result == "you won") {
-        userScore++;
-    } else if (result == "you lose") {
-        computerScore++;
-    }
-    div.textContent = "You: " + userScore + " vs " + "Computer: " + computerScore;
-    if (userScore + computerScore == 5) {
-        winner(userScore, computerScore);
-    }
-});
-
-const btn2 = document.querySelector("#paper");
-btn2.addEventListener("click", function(e) {
-    let result = outcome("paper", getComputerChoice());
-    if (result == "you won") {
-        userScore++;
-    } else if (result == "you lose") {
-        computerScore++;
-    }
-    div.textContent = "You: " + userScore + " vs " + "Computer: " + computerScore;
-    if (userScore + computerScore == 5) {
-        winner(userScore, computerScore);
-    }
-});
-
-const btn3 = document.querySelector("#scissors");
-btn3.addEventListener("click", function(e) {
-    console.log(e)
-    let result = outcome("scissors", getComputerChoice());
-    if (result == "you won") {
-        userScore++;
-    } else if (result == "you lose") {
-        computerScore++;
-    }
-    div.textContent = "You: " + userScore + " vs " + "Computer: " + computerScore;
-    if (userScore + computerScore == 5) {
-        winner(userScore, computerScore);
-    }
-});
-
-
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        console.log(button.id);
+        let computerChoice = getComputerChoice();
+        let result = outcome(button.id, computerChoice); //this.id represents string rock/paper/scissors
+        div.textContent = "You: " + userScore + " vs " + "Computer: " + computerScore;
+        if (result == "you won") {
+            userScore++;
+        } else if (result == "you lose") {
+            computerScore++;
+        }
+        div.textContent = "You: " + userScore + " vs " + "Computer: " + computerScore;
+        choices.textContent = button.id + " vs " + computerChoice;
+        div.appendChild(choices);
+        if (userScore + computerScore == 5) {
+            declareWinner(userScore, computerScore);
+        }
+    })
+})
