@@ -58,18 +58,21 @@ Main ----------------------------
 var userScore = 0;
 var computerScore = 0;
 
+const div = document.querySelector("#container")
+
 const btn1 = document.querySelector("#rock");
 btn1.addEventListener("click", function(e) {
     let result = outcome("rock", getComputerChoice());
+    div.textContent = "You: " + userScore + " vs " + "Computer: " + computerScore;
     if (result == "you won") {
         userScore++;
     } else if (result == "you lose") {
         computerScore++;
     }
+    div.textContent = "You: " + userScore + " vs " + "Computer: " + computerScore;
     if (userScore + computerScore == 5) {
         winner(userScore, computerScore);
     }
-    console.log(userScore, "vs", computerScore);
 });
 
 const btn2 = document.querySelector("#paper");
@@ -80,23 +83,25 @@ btn2.addEventListener("click", function(e) {
     } else if (result == "you lose") {
         computerScore++;
     }
+    div.textContent = "You: " + userScore + " vs " + "Computer: " + computerScore;
     if (userScore + computerScore == 5) {
         winner(userScore, computerScore);
     }
-    console.log(userScore, "vs", computerScore);
 });
 
 const btn3 = document.querySelector("#scissors");
 btn3.addEventListener("click", function(e) {
+    console.log(e)
     let result = outcome("scissors", getComputerChoice());
     if (result == "you won") {
         userScore++;
     } else if (result == "you lose") {
         computerScore++;
     }
+    div.textContent = "You: " + userScore + " vs " + "Computer: " + computerScore;
     if (userScore + computerScore == 5) {
         winner(userScore, computerScore);
     }
-    console.log(userScore, "vs", computerScore);
 });
+
 
